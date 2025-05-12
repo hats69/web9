@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="stylesheet" href="con1.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro | 6ix9ine Hats</title>
+</head>
+<body>
+
+  <!-- Barra de navegación -->
+  <nav class="navbar">
+    <link rel="stylesheet" type="text/css" href="iniciose.css">
+    <div class="perfil">
+      <label for="input-foto" style="cursor:pointer;">
+        <div id="preview-container">
+          <img id="preview-img" src="https://via.placeholder.com/40" alt="📷">
+          <div class="logo">
+            <div class="img">    
+              <img src="logo1.png" alt="Logo 6ix9ine">
+            </div>
+          </div>
+        </div>
+      </label>
+      <input type="file" id="input-foto" accept="image/*" style="display:none;">
+    </div>
+
+<script>
+window.onload = function () {
+  const imagenGuardada = localStorage.getItem("fotoPerfil");
+  const previewImg = document.getElementById("preview-img");
+
+  if (imagenGuardada) {
+    previewImg.src = imagenGuardada;
+  } else {
+    previewImg.src = "https://via.placeholder.com/40"; // Imagen por defecto
+  }
+
+  cargarContenido('index.html');
+};
+
+// Cuando el usuario selecciona una nueva foto
+document.getElementById("input-foto").addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const imageData = e.target.result;
+      document.getElementById("preview-img").src = imageData;
+      localStorage.setItem("fotoPerfil", imageData);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Escuchar cambios de localStorage desde otras pestañas
+window.addEventListener("storage", function (event) {
+  if (event.key === "fotoPerfil") {
+    document.getElementById("preview-img").src = event.newValue || "https://via.placeholder.com/40";
+  }
+});
+</script>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- Formulario de Registro -->
+  <div class="container4">
+    <h2>Registro</h2>
+    <form
+      id="form-registro"
+      action="https://formspree.io/f/mnndzzke"
+      method="POST"
+      enctype="multipart/form-data">
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
+
+      <label for="correo">Correo electrónico:</label>
+      <input type="email" id="correo" name="email" placeholder="Ingresa tu correo" required>
+
+      <button type="submit">Registrar</button>
+    </form>
+  </div>
+<br><br><br><br>
+<br><br>
+
+
+
+ 
+        <footer class="footer">
+                <header>
+        <img src="logo.png" alt="Logo de 69HATS">          <p>© 2025 69HATS | TODOS LOS DERECHOS RESERVADOS</p>
+
+    </header>
+        </footer>
+      </body>
+</html>
